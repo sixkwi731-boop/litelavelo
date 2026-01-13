@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Login from "./components/Login";
 import PhoneConfirmation from "./components/PhoneConfirmation";
 import CreateAccount from "./components/CreateAccount";
@@ -97,6 +98,7 @@ function App() {
     <div className="App">
       {isLoading && <Loading />}
       {renderScreen()}
+      <Analytics />
     </div>
   );
 }
