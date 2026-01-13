@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+const { Pool } = require('pg');
 
 export default async function handler(req, res) {
   // Apenas DELETE
@@ -14,11 +14,16 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Senha incorreta' });
   }
 
+  const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+
   try {
     // Deleta todos os usuários
-    const result = await sql`
-      DELETE FROM users
-    `;
+    const result = await pool.query('DELETE FROM users');
 
     return res.status(200).json({ 
       success: true,
@@ -32,5 +37,7 @@ export default async function handler(req, res) {
       error: 'Erro ao deletar dados',
       details: error.message 
     });
+  } finally {
+    await pool.end();
   }
 }

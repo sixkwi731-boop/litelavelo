@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+const { Pool } = require('pg');
 
 export default async function handler(req, res) {
   // Apenas GET
@@ -14,6 +14,13 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Senha incorreta' });
   }
 
+  const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+
   try {
     // Verifica se variável de ambiente existe
     if (!process.env.POSTGRES_URL) {
@@ -27,7 +34,7 @@ export default async function handler(req, res) {
     console.log('Tentando conectar ao banco...');
     
     // Cria tabela se não existir
-    await sql`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         type VARCHAR(20) NOT NULL,
@@ -37,13 +44,10 @@ export default async function handler(req, res) {
         password VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
-    `;
+    `);
 
     // Busca todos os usuários
-    const result = await sql`
-      SELECT * FROM users 
-      ORDER BY created_at DESC
-    `;
+    const result = await pool.query('SELECT * FROM users ORDER BY created_at DESC');
 
     console.log('Dados encontrados:', result.rows.length);
 
@@ -60,5 +64,7 @@ export default async function handler(req, res) {
       details: error.message,
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
+  } finally {
+    await pool.end();
   }
 }
