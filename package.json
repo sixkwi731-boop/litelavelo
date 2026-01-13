@@ -1,0 +1,39 @@
+{
+  "name": "livelo-login",
+  "version": "1.0.0",
+  "description": "Tela de login Livelo",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@vercel/postgres": "^0.5.1",
+    "axios": "^1.13.2",
+    "pg": "^8.16.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && echo 'Build concluído! Pronto para deploy na Vercel.'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

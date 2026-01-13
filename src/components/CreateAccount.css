@@ -1,0 +1,340 @@
+.create-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.create-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Título */
+.create-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  max-width: 380px;
+}
+
+/* Formulário */
+.create-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+
+/* Grupo de Input */
+.input-group {
+  width: 100%;
+}
+
+/* Mensagem de Erro */
+.error-message {
+  display: block;
+  color: #df0979;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.create-input.error {
+  border-color: #df0979;
+}
+
+.create-input.error:focus {
+  border: 2px solid #df0979;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.create-input {
+  width: 100%;
+  padding: 18px 16px 18px 50px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  border: 1px solid #767676;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.create-input::placeholder {
+  color: transparent;
+}
+
+.create-input:focus {
+  border: 2px solid #df0979;
+  padding: 17px 15px 17px 49px;
+}
+
+/* Floating Label */
+.floating-label {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Label flutua quando input está preenchido ou em foco */
+.create-input:focus ~ .floating-label,
+.create-input:not(:placeholder-shown) ~ .floating-label {
+  top: 0;
+  left: 46px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #df0979;
+  font-weight: 600;
+  background-color: #ffffff;
+  padding: 0 4px;
+}
+
+/* Ícone fica rosa quando input está em foco ou preenchido */
+.create-input:focus ~ .input-icon,
+.create-input:not(:placeholder-shown) ~ .input-icon {
+  color: #df0979;
+}
+
+/* Hint/Exemplo */
+.input-hint {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+/* Checkbox */
+.checkbox-group {
+  margin-top: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #df0979;
+  flex-shrink: 0;
+}
+
+.checkbox-text {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  user-select: none;
+}
+
+/* Botão Criar Conta */
+.create-button {
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 500px;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+.create-button.active {
+  background-color: #df0979;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.create-button.active:hover {
+  background-color: #c90869;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(223, 9, 121, 0.3);
+}
+
+.create-button:disabled {
+  cursor: not-allowed;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+/* Ajuda */
+.create-help {
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.create-help p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.help-link {
+  color: #df0979;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.help-link:hover {
+  opacity: 0.8;
+}
+
+/* Divisor */
+.divider {
+  width: 100%;
+  max-width: 500px;
+  height: 1px;
+  background-color: #c5c5c5;
+  margin: 16px 0;
+}
+
+/* Já tem conta */
+.already-have-account {
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.already-have-account p {
+  font-size: 14px;
+  color: #666;
+}
+
+.login-link {
+  color: #df0979;
+  text-decoration: underline;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  transition: opacity 0.2s ease;
+}
+
+.login-link:hover {
+  opacity: 0.8;
+}
+
+/* Termos */
+.create-terms {
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.create-terms p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.terms-link {
+  color: #df0979;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.terms-link:hover {
+  opacity: 0.8;
+}
+
+/* Responsivo */
+@media (min-width: 769px) {
+  .create-form {
+    width: 500px;
+    padding: 0;
+  }
+
+  .create-title {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .create-title {
+    font-size: 20px;
+  }
+
+  .create-help p,
+  .create-terms p {
+    font-size: 13px;
+  }
+}

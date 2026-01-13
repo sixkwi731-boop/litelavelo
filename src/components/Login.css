@@ -1,0 +1,322 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.login-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Título */
+.login-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  max-width: 380px;
+  padding: 0 20px;
+}
+
+/* Formulário */
+.login-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+/* Grupo de Input */
+.input-group {
+  width: 100%;
+}
+
+/* Mensagem de Erro */
+.error-message {
+  display: block;
+  color: #df0979;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.login-input.error {
+  border-color: #df0979;
+}
+
+.login-input.error:focus {
+  border: 2px solid #df0979;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.login-input {
+  width: 100%;
+  padding: 18px 16px 18px 50px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  border: 1px solid #767676;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.login-input::placeholder {
+  color: transparent;
+}
+
+.login-input:focus {
+  border: 2px solid #df0979;
+  padding: 17px 15px 17px 49px;
+}
+
+/* Floating Label */
+.floating-label {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Label flutua quando input está preenchido ou em foco */
+.login-input:focus ~ .floating-label,
+.login-input:not(:placeholder-shown) ~ .floating-label {
+  top: 0;
+  left: 46px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #df0979;
+  font-weight: 600;
+  background-color: #ffffff;
+  padding: 0 4px;
+}
+
+/* Ícone fica rosa quando input está em foco ou preenchido */
+.login-input:focus ~ .input-icon,
+.login-input:not(:placeholder-shown) ~ .input-icon {
+  color: #df0979;
+}
+
+/* Botão de mostrar/ocultar senha */
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: #666;
+}
+
+/* Link Esqueceu senha */
+.forgot-password {
+  text-align: left;
+  margin-top: -8px;
+}
+
+.forgot-password a {
+  color: #df0979;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.forgot-password a:hover {
+  opacity: 0.8;
+}
+
+/* Botão Entrar */
+.login-button {
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 500px;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+.login-button.active {
+  background-color: #df0979;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.login-button.active:hover {
+  background-color: #c90869;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(223, 9, 121, 0.3);
+}
+
+.login-button:disabled {
+  cursor: not-allowed;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+/* Criar conta */
+.create-account {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.create-account p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.create-account-link {
+  color: #df0979;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+}
+
+.create-account-link:hover {
+  opacity: 0.8;
+}
+
+/* Voltar para página inicial */
+.back-home {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.back-home a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1565c0;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.back-home a:hover {
+  opacity: 0.8;
+}
+
+.admin-access {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.admin-access:hover {
+  opacity: 1;
+}
+
+/* Responsivo */
+@media (min-width: 769px) {
+  .login-form {
+    width: 500px;
+    padding: 0;
+  }
+
+  .login-title {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-title {
+    font-size: 20px;
+  }
+
+  .back-home {
+    position: static;
+    margin-top: 40px;
+  }
+
+  .back-home a {
+    justify-content: center;
+  }
+}

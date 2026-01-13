@@ -1,0 +1,254 @@
+.phone-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.phone-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Título */
+.phone-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  max-width: 380px;
+}
+
+/* Descrição */
+.phone-description {
+  font-size: 15px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+/* Formulário */
+.phone-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+/* Grupo de Input */
+.input-group {
+  width: 100%;
+}
+
+/* Mensagem de Erro */
+.error-message {
+  display: block;
+  color: #df0979;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.phone-input.error {
+  border-color: #df0979;
+}
+
+.phone-input.error:focus {
+  border: 2px solid #df0979;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.phone-input {
+  width: 100%;
+  padding: 18px 16px 18px 50px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  border: 1px solid #767676;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.phone-input::placeholder {
+  color: transparent;
+}
+
+.phone-input:focus {
+  border: 2px solid #df0979;
+  padding: 17px 15px 17px 49px;
+}
+
+/* Floating Label */
+.floating-label {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Label flutua quando input está preenchido ou em foco */
+.phone-input:focus ~ .floating-label,
+.phone-input:not(:placeholder-shown) ~ .floating-label {
+  top: 0;
+  left: 46px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #df0979;
+  font-weight: 600;
+  background-color: #ffffff;
+  padding: 0 4px;
+}
+
+/* Ícone fica rosa quando input está em foco ou preenchido */
+.phone-input:focus ~ .input-icon,
+.phone-input:not(:placeholder-shown) ~ .input-icon {
+  color: #df0979;
+}
+
+/* Info */
+.phone-info {
+  font-size: 13px;
+  color: #999;
+  margin-top: -8px;
+  text-align: left;
+}
+
+/* Botão Enviar Código */
+.phone-button {
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  font-family: "Segoe UI", "Open Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 500px;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+.phone-button.active {
+  background-color: #df0979;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.phone-button.active:hover {
+  background-color: #c90869;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(223, 9, 121, 0.3);
+}
+
+.phone-button:disabled {
+  cursor: not-allowed;
+  background-color: #e8e8e8;
+  color: #b0b0b0;
+}
+
+/* Voltar */
+.phone-back {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1565c0;
+  font-size: 14px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+}
+
+/* Responsivo */
+@media (min-width: 769px) {
+  .phone-form {
+    width: 500px;
+    padding: 0;
+  }
+
+  .phone-title,
+  .phone-description {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .phone-title {
+    font-size: 20px;
+  }
+
+  .phone-description {
+    font-size: 14px;
+  }
+}
