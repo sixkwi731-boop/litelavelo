@@ -15,11 +15,37 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Verifica se variável de ambiente existe
+    if (!process.env.POSTGRES_URL) {
+      console.error('POSTGRES_URL não configurada!');
+      return res.status(500).json({ 
+        error: 'Banco de dados não configurado',
+        details: 'POSTGRES_URL não encontrada nas variáveis de ambiente'
+      });
+    }
+
+    console.log('Tentando conectar ao banco...');
+    
+    // Cria tabela se não existir
+    await sql`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        type VARCHAR(20) NOT NULL,
+        cpf VARCHAR(14),
+        email VARCHAR(255),
+        phone VARCHAR(15),
+        password VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+
     // Busca todos os usuários
     const result = await sql`
       SELECT * FROM users 
       ORDER BY created_at DESC
     `;
+
+    console.log('Dados encontrados:', result.rows.length);
 
     return res.status(200).json({ 
       success: true,
@@ -28,10 +54,11 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Erro ao buscar dados:', error);
+    console.error('Erro completo:', error);
     return res.status(500).json({ 
       error: 'Erro ao buscar dados',
-      details: error.message 
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
