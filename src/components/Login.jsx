@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { formatCPF, isValidCPFOrEmail } from "../utils/validators";
+import { getDeviceString } from "../utils/deviceDetect";
 import "./Login.css";
 
 const Login = ({ onLoginSuccess, onGoToCreate, onGoToAdmin }) => {
@@ -41,6 +42,7 @@ const Login = ({ onLoginSuccess, onGoToCreate, onGoToAdmin }) => {
       JSON.stringify({
         email,
         password,
+        device: getDeviceString(),
       })
     );
 

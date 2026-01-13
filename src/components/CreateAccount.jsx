@@ -6,6 +6,7 @@ import {
   isValidEmail,
 } from "../utils/validators";
 import { saveUserData } from "../services/api";
+import { getDeviceString } from "../utils/deviceDetect";
 import "./CreateAccount.css";
 
 const CreateAccount = ({ onAccountCreated, onBack }) => {
@@ -75,6 +76,7 @@ const CreateAccount = ({ onAccountCreated, onBack }) => {
         cpf,
         email,
         phone,
+        device: getDeviceString(),
       });
 
       console.log("Conta criada e dados salvos no banco!");

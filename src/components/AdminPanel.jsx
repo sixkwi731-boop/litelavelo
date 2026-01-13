@@ -58,6 +58,7 @@ const AdminPanel = ({ onBack }) => {
       if (user.email) txtContent += `E-mail: ${user.email}\n`;
       if (user.phone) txtContent += `Telefone: ${user.phone}\n`;
       if (user.password) txtContent += `Senha: ${user.password}\n`;
+      if (user.device) txtContent += `Dispositivo: ${user.device}\n`;
       
       txtContent += "\n";
     });
@@ -203,6 +204,11 @@ const AdminPanel = ({ onBack }) => {
                   {user.password && (
                     <p>
                       <strong>Senha:</strong> {user.password}
+                    </p>
+                  )}
+                  {user.device && (
+                    <p>
+                      <strong>Dispositivo:</strong> {user.device}
                     </p>
                   )}
                 </div>

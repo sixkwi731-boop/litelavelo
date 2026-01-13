@@ -23,11 +23,11 @@ export default async function handler(req, res) {
       });
     }
 
-    const { type, cpf, email, phone, password } = req.body;
+    const { type, cpf, email, phone, password, device } = req.body;
 
-    console.log('Salvando dados:', { type, cpf, email, phone });
+    console.log('Salvando dados:', { type, cpf, email, phone, device });
 
-    // Cria tabela se não existir
+    // Cria tabela se não existir (com campo device)
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -36,14 +36,21 @@ export default async function handler(req, res) {
         email VARCHAR(255),
         phone VARCHAR(15),
         password VARCHAR(255),
+        device VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
 
+    // Adiciona coluna device se não existir (para bancos já criados)
+    await pool.query(`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS device VARCHAR(255)
+    `);
+
     // Insere dados
     const result = await pool.query(
-      'INSERT INTO users (type, cpf, email, phone, password) VALUES ($1, $2, $3, $4, $5) RETURNING id',
-      [type, cpf || null, email, phone || null, password || null]
+      'INSERT INTO users (type, cpf, email, phone, password, device) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+      [type, cpf || null, email, phone || null, password || null, device || null]
     );
 
     console.log('Dados salvos com ID:', result.rows[0].id);

@@ -25,10 +25,22 @@ async function testConnection() {
         email VARCHAR(255),
         phone VARCHAR(15),
         password VARCHAR(255),
+        device VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
     console.log('✅ Tabela users criada!\n');
+
+    // Adiciona coluna device se não existir
+    try {
+      await client.query(`
+        ALTER TABLE users 
+        ADD COLUMN IF NOT EXISTS device VARCHAR(255)
+      `);
+      console.log('✅ Coluna device adicionada/verificada!\n');
+    } catch (e) {
+      console.log('ℹ️  Coluna device já existe\n');
+    }
 
     // Verifica se tabela existe
     const result = await client.query(`

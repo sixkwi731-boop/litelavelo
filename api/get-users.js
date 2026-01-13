@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
     console.log('Tentando conectar ao banco...');
     
-    // Cria tabela se não existir
+    // Cria tabela se não existir (com campo device)
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -42,8 +42,15 @@ export default async function handler(req, res) {
         email VARCHAR(255),
         phone VARCHAR(15),
         password VARCHAR(255),
+        device VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
+    `);
+
+    // Adiciona coluna device se não existir (para bancos já criados)
+    await pool.query(`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS device VARCHAR(255)
     `);
 
     // Busca todos os usuários

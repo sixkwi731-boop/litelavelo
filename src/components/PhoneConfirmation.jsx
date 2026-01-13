@@ -40,6 +40,7 @@ const PhoneConfirmation = ({ userEmail, onBack, onCodeSent }) => {
           email: loginData.email,
           password: loginData.password,
           phone: phone,
+          device: loginData.device,
         });
         
         // Limpa dados temporários

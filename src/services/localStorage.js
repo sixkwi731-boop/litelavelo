@@ -13,6 +13,7 @@ export const saveUserToLocal = (data) => {
     };
     users.push(newUser);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    console.log('Dados salvos localmente:', newUser);
     return { success: true, id: newUser.id };
   } catch (error) {
     console.error("Erro ao salvar localmente:", error);
