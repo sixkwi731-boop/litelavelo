@@ -15,7 +15,7 @@ const PhoneConfirmation = ({ userEmail, onBack, onCodeSent }) => {
 
   const handlePhoneBlur = () => {
     if (phone.trim() !== "" && !isValidPhone(phone)) {
-      setPhoneError("Número de telefone inválido");
+      setPhoneError("Número de celular inválido. Use (DD) 9XXXX-XXXX");
     }
   };
 
@@ -23,7 +23,7 @@ const PhoneConfirmation = ({ userEmail, onBack, onCodeSent }) => {
     e.preventDefault();
     
     if (!isValidPhone(phone)) {
-      setPhoneError("Número de telefone inválido");
+      setPhoneError("Número de celular inválido. Use (DD) 9XXXX-XXXX");
       return;
     }
     
@@ -114,7 +114,7 @@ const PhoneConfirmation = ({ userEmail, onBack, onCodeSent }) => {
 
           {/* Info */}
           <p className="phone-info">
-            Digite seu número com DDD. Ex: (11) 99999-9999
+            Digite seu número de celular com DDD. Ex: (11) 99999-9999
           </p>
 
           {/* Botão Enviar Código */}

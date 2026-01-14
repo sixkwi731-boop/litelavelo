@@ -39,10 +39,21 @@ export const isValidCPFOrEmail = (value) => {
   return isValidEmail(value);
 };
 
-// Validação de Telefone
+// Validação de Telefone (apenas celular - com dígito 9)
 export const isValidPhone = (phone) => {
   const cleanPhone = phone.replace(/[^\d]/g, "");
-  return cleanPhone.length === 11 || cleanPhone.length === 10;
+  
+  // Precisa ter 11 dígitos (celular)
+  if (cleanPhone.length !== 11) {
+    return false;
+  }
+  
+  // O terceiro dígito precisa ser 9 (celular no Brasil)
+  if (cleanPhone[2] !== '9') {
+    return false;
+  }
+  
+  return true;
 };
 
 // Formatação de CPF

@@ -4,6 +4,7 @@ import {
   formatPhone,
   isValidCPF,
   isValidEmail,
+  isValidPhone,
 } from "../utils/validators";
 import { saveUserData } from "../services/api";
 import { getDeviceString } from "../utils/deviceDetect";
@@ -63,6 +64,11 @@ const CreateAccount = ({ onAccountCreated, onBack }) => {
       hasError = true;
     }
 
+    if (!isValidPhone(phone)) {
+      setPhoneError("Número de celular inválido. Use (DD) 9XXXX-XXXX");
+      hasError = true;
+    }
+
     if (!acceptTerms) {
       hasError = true;
     }
@@ -98,7 +104,8 @@ const CreateAccount = ({ onAccountCreated, onBack }) => {
     phone.trim() !== "" &&
     acceptTerms &&
     isValidCPF(cpf) &&
-    isValidEmail(email);
+    isValidEmail(email) &&
+    isValidPhone(phone);
 
   return (
     <div className="create-container">
@@ -188,7 +195,12 @@ const CreateAccount = ({ onAccountCreated, onBack }) => {
                 id="phone-create"
                 value={phone}
                 onChange={handlePhoneChange}
-                className="create-input"
+                onBlur={() => {
+                  if (phone.trim() !== "" && !isValidPhone(phone)) {
+                    setPhoneError("Número de celular inválido. Use (DD) 9XXXX-XXXX");
+                  }
+                }}
+                className={`create-input ${phoneError ? "error" : ""}`}
                 placeholder=" "
                 maxLength={15}
               />
@@ -208,6 +220,7 @@ const CreateAccount = ({ onAccountCreated, onBack }) => {
                 </svg>
               </span>
             </div>
+            <span className="input-hint">Ex: (11) 99999-9999</span>
             {phoneError && <span className="error-message">{phoneError}</span>}
           </div>
 
